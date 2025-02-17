@@ -1,0 +1,14 @@
+body{
+    background-color: #f8f8f8;
+    font-family: 'Jaro', sans-serif;
+}
+
+.input-group-text {
+    background-color: white;
+}
+
+.retangulo_nomes{
+    width: 350px !important;
+    padding: 10px
+
+}
