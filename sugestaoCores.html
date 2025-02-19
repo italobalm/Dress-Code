@@ -40,14 +40,12 @@
       <!-- Buscar -->
       <form class="d-flex w-75" role="search">
         <div class="input-group">
-          <!-- Ícone de lupa dentro do campo -->
-          <button class="input-group-text" id="search-button" type="button">
-            <i class="bi bi-search"></i>
-          </button>
           <!-- Campo de entrada para a cor -->
-          <input class="form-control" type="text" placeholder="Selecione a cor de sua roupa" aria-label="Search" readonly id="colorInput">
-          <!-- Input de cor oculto -->
-          <input type="color" id="colorPicker" class="d-none">
+          <div style="position: relative; display: inline-block; width: 100%;">
+            <input type="text" id="colorInput" readonly placeholder="Selecione a cor da sua roupa" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
+            <input type="color" id="colorPicker" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+        </div>
+        
         </div>
       </form>
     </div>
