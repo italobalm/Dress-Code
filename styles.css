@@ -1,0 +1,47 @@
+body{
+    background-color: #f8f8f8;
+    font-family: 'Jaro', sans-serif !important;
+}
+
+.input-group-text {
+    background-color: white;
+    width: center;
+    font-family: 'Jaro', sans-serif  !important;
+}
+
+.retangulo_nomes{
+    width: 350px !important;
+    padding: 10px
+
+}
+
+#suggestions { margin-top: 20px; text-align: center; }
+.color-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Tornando a cor circular */
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid black;
+    background-color: transparent; /* Cor inicial vazia */
+}
+
+.form-control{
+    font-family: 'Jaro';
+}
+
+h3 {
+    text-align: center;
+}
+
+h4 {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+p {
+    font-size: 14px;
+    text-align: justify;
+    padding-left: 40px;
+    padding-right: 40px;
+}
