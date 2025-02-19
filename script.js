@@ -1,211 +1,70 @@
-// Adicionando lógica de cor e sugestões
-document.getElementById('colorInput').addEventListener('click', () => document.getElementById('colorPicker').click());
+// Variáveis para armazenar dados de roupas
+let roupas = [];
 
-document.getElementById('colorPicker').addEventListener('input', function() {
-    let color = this.value;
-    let suggestions = getMatchingColors(color);
-    displaySuggestions(suggestions);
+// Função para carregar as roupas na tela
+function carregarRoupas() {
+    const lista = document.getElementById('lista-roupas');
+    lista.innerHTML = '';  // Limpa a lista antes de adicionar as roupas
+    roupas.forEach((roupa, index) => {
+        const li = document.createElement('li');
+        li.classList.add('list-group-item');
+        li.innerHTML = `${roupa.nome} - ${roupa.tipo} <button class="btn btn-danger btn-sm float-end ml-2" onclick="removerRoupa(${index})">Remover</button>`;
+        lista.appendChild(li);
+    });
+}
 
-    // Alterando a cor da barra de pesquisa e da lupa
-    changeSearchBarColor(color);
+// Função para remover roupa
+function removerRoupa(index) {
+    roupas.splice(index, 1);
+    carregarRoupas();
+}
+
+// Função para gerar uma combinação aleatória de roupas
+function gerarCombinacao() {
+    if (roupas.length < 2) {
+        document.getElementById('combinacao-gerada').textContent = 'Adicione mais roupas para gerar combinações!';
+        return;
+    }
+
+    // Divisão dos tipos de roupas para permitir combinações apropriadas
+    const tiposPermitidos = {
+        "calça": ["camisa", "blusa", "suéter", "jaqueta", "casaco"], // Calças podem combinar com camisas, blusas, etc.
+        "bermuda": ["camisa", "blusa", "regata", "polo"], // Bermudas com camisas, blusas, etc.
+        "shorts": ["camisa", "blusa", "regata", "polo"], // Shorts com camisas, blusas, etc.
+        "saia": ["blusa", "camisa", "top"], // Saias com blusas, camisas, tops
+        "camisa": ["calça", "bermuda", "shorts", "saia", "jeans"], // Camisa pode ser combinada com todos os tipos
+        // Você pode adicionar mais tipos e regras conforme necessário
+    };
+
+    // Lógica para gerar uma combinação válida
+    let roupa1, roupa2;
+    let tentativa = true;
+
+    while (tentativa) {
+        roupa1 = roupas[Math.floor(Math.random() * roupas.length)];
+        roupa2 = roupas[Math.floor(Math.random() * roupas.length)];
+
+        // Verificando se as roupas podem ser combinadas
+        if (tiposPermitidos[roupa1.tipo].includes(roupa2.tipo) && roupa1 !== roupa2) {
+            tentativa = false; // Sai do loop se a combinação for válida
+        }
+    }
+
+    document.getElementById('combinacao-gerada').textContent = `Combinação sugerida: ${roupa1.nome} + ${roupa2.nome}`;
+}
+
+// Adicionar roupa
+document.getElementById('form-roupa').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const tipo = document.getElementById('tipo').value;
+    roupas.push({ nome, tipo });
+    carregarRoupas();
+    document.getElementById('nome').value = '';
+    document.getElementById('tipo').value = '';
 });
 
-function getMatchingColors(hex) {
-    let r = parseInt(hex.substr(1,2), 16);
-    let g = parseInt(hex.substr(3,2), 16);
-    let b = parseInt(hex.substr(5,2), 16);
-    let hsl = rgbToHsl(r, g, b);
+// Gerar combinação
+document.getElementById('gerar-combinacao').addEventListener('click', gerarCombinacao);
 
-    // Criando variações baseadas na cor escolhida
-    let analogous1 = hslToRgb((hsl[0] + 30) % 360, hsl[1], hsl[2]);
-    let analogous2 = hslToRgb((hsl[0] - 30 + 360) % 360, hsl[1], hsl[2]);
-    let balancedComplementary = hslToRgb((hsl[0] + 150) % 360, hsl[1] * 0.8, hsl[2] * 1.1); // Complementar ajustado
 
-    // Definindo uma cor neutra baseada na luminosidade
-    let neutral = (hsl[2] > 0.5) ? "#333333" : "#F0F0F0"; // Preto ou Branco/Cinza claro
-
-    return [
-        rgbToHex(analogous1),
-        rgbToHex(analogous2),
-        rgbToHex(balancedComplementary),
-        neutral
-    ];
-}
-
-function displaySuggestions(colors) {
-    let container = document.getElementById("suggestions");
-    let colorBoxes = container.getElementsByClassName("color-box");
-
-    // Preencher os círculos com as cores
-    for (let i = 0; i < colorBoxes.length; i++) {
-        if (colors[i]) {
-            colorBoxes[i].style.backgroundColor = colors[i];
-        }
-    }
-}
-
-// Função para mudar a cor da barra de pesquisa e da lupa
-function changeSearchBarColor(color) {
-    const searchButton = document.getElementById('search-button');
-    const colorInput = document.getElementById('colorInput');
-
-    // Alterando a cor da barra de pesquisa e da lupa
-    colorInput.style.backgroundColor = color;
-    searchButton.style.backgroundColor = color;
-
-    // Mudando a cor do texto para um contraste adequado
-    if (getContrast(color) < 128) {
-        colorInput.style.color = "#fff"; // Cor clara para o texto
-        searchButton.style.color = "#fff"; // Cor clara para o texto da lupa
-    } else {
-        colorInput.style.color = "#000"; // Cor escura para o texto
-        searchButton.style.color = "#000"; // Cor escura para o texto da lupa
-    }
-}
-
-// Função para calcular o contraste de uma cor
-function getContrast(hex) {
-    // Calcula o contraste de uma cor para decidir se o texto ficará claro ou escuro
-    let r = parseInt(hex.substr(1, 2), 16);
-    let g = parseInt(hex.substr(3, 2), 16);
-    let b = parseInt(hex.substr(5, 2), 16);
-
-    // Usando a fórmula de luminância para calcular o contraste
-    return (r * 0.299 + g * 0.587 + b * 0.114);
-}
-
-function rgbToHsl(r, g, b) {
-    r /= 255, g /= 255, b /= 255;
-    let max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-
-    if (max === min) {
-        h = s = 0;
-    } else {
-        let d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h *= 60;
-    }
-    return [h, s, l];
-}
-
-function hslToRgb(h, s, l) {
-    let r, g, b;
-    if (s === 0) {
-        r = g = b = l;
-    } else {
-        function hueToRgb(p, q, t) {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1/6) return p + (q - p) * 6 * t;
-            if (t < 1/2) return q;
-            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-            return p;
-        }
-
-        let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        let p = 2 * l - q;
-        r = hueToRgb(p, q, h / 360 + 1/3);
-        g = hueToRgb(p, q, h / 360);
-        b = hueToRgb(p, q, h / 360 - 1/3);
-    }
-    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-}
-
-function rgbToHex(rgb) {
-    return "#" + rgb.map(x => x.toString(16).padStart(2, "0")).join("").toUpperCase();
-}
-// Adicionando lógica de cor e sugestões
-document.getElementById('colorInput').addEventListener('click', () => document.getElementById('colorPicker').click());
-
-document.getElementById('colorPicker').addEventListener('input', function() {
-    let color = this.value;
-    let suggestions = getMatchingColors(color);
-    displaySuggestions(suggestions);
-});
-
-function getMatchingColors(hex) {
-    let r = parseInt(hex.substr(1,2), 16);
-    let g = parseInt(hex.substr(3,2), 16);
-    let b = parseInt(hex.substr(5,2), 16);
-    let hsl = rgbToHsl(r, g, b);
-
-    // Criando variações baseadas na cor escolhida
-    let analogous1 = hslToRgb((hsl[0] + 30) % 360, hsl[1], hsl[2]);
-    let analogous2 = hslToRgb((hsl[0] - 30 + 360) % 360, hsl[1], hsl[2]);
-    let balancedComplementary = hslToRgb((hsl[0] + 150) % 360, hsl[1] * 0.8, hsl[2] * 1.1); // Complementar ajustado
-
-    // Definindo uma cor neutra baseada na luminosidade
-    let neutral = (hsl[2] > 0.5) ? "#333333" : "#F0F0F0"; // Preto ou Branco/Cinza claro
-
-    return [
-        rgbToHex(analogous1),
-        rgbToHex(analogous2),
-        rgbToHex(balancedComplementary),
-        neutral
-    ];
-}
-
-function displaySuggestions(colors) {
-    let container = document.getElementById("suggestions");
-    let colorBoxes = container.getElementsByClassName("color-box");
-
-    // Preencher os círculos com as cores
-    for (let i = 0; i < colorBoxes.length; i++) {
-        if (colors[i]) {
-            colorBoxes[i].style.backgroundColor = colors[i];
-        }
-    }
-}
-
-function rgbToHsl(r, g, b) {
-    r /= 255, g /= 255, b /= 255;
-    let max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-
-    if (max === min) {
-        h = s = 0;
-    } else {
-        let d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h *= 60;
-    }
-    return [h, s, l];
-}
-
-function hslToRgb(h, s, l) {
-    let r, g, b;
-    if (s === 0) {
-        r = g = b = l;
-    } else {
-        function hueToRgb(p, q, t) {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1/6) return p + (q - p) * 6 * t;
-            if (t < 1/2) return q;
-            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-            return p;
-        }
-
-        let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        let p = 2 * l - q;
-        r = hueToRgb(p, q, h / 360 + 1/3);
-        g = hueToRgb(p, q, h / 360);
-        b = hueToRgb(p, q, h / 360 - 1/3);
-    }
-    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-}
-
-function rgbToHex(rgb) {
-    return "#" + rgb.map(x => x.toString(16).padStart(2, "0")).join("").toUpperCase();
-}
