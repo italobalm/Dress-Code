@@ -1,3 +1,13 @@
+//Redirecionamento temporário do botão "Entrar" na página login
+document.getElementById("botaoEntrar").addEventListener("click", function(){
+    window.location.href="cadastrarRoupas.html"
+});
+
+//Redirecionamento para a página de cadastro
+document.getElementById("botaoCadastro").addEventListener("click", function(){
+    window.location.href="novoUsuario.html"
+});
+
 // Variáveis para armazenar dados de roupas
 let roupas = [];
 
