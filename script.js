@@ -1,12 +1,16 @@
-//Redirecionamento temporário do botão "Entrar" na página login
-document.getElementById("botaoEntrar").addEventListener("click", function(){
-    window.location.href="cadastrarRoupas.html"
-});
+// Função para adicionar um evento de clique de forma segura
+function adicionarEventoClique(id, destino) {
+    const botao = document.getElementById(id);
+    if (botao) {
+        botao.addEventListener("click", () => window.location.href = destino);
+    }
+}
 
-//Botão "Cadastre-se" que redireciona para a página de cadastro
-document.getElementById("botaoCadastro").addEventListener("click", function(){
-    window.location.href="novoUsuario.html"
-});
+// Adicionando eventos de redirecionamento
+adicionarEventoClique("botaoEntrar", "cadastrarRoupas.html");
+adicionarEventoClique("botaoCadastro", "novoUsuario.html");
+adicionarEventoClique("finalizarCadastro", "cadastrarRoupas.html");
+
 
 // Variáveis para armazenar dados de roupas
 let roupas = [];
@@ -49,19 +53,23 @@ function gerarCombinacao() {
     // Lógica para gerar uma combinação válida
     let roupa1, roupa2;
     let tentativa = true;
+    let maxTentativas = 2;
 
-    while (tentativa) {
+    while (tentativa < maxTentativas) {
         roupa1 = roupas[Math.floor(Math.random() * roupas.length)];
         roupa2 = roupas[Math.floor(Math.random() * roupas.length)];
 
-        // Verificando se as roupas podem ser combinadas
-        if (tiposPermitidos[roupa1.tipo].includes(roupa2.tipo) && roupa1 !== roupa2) {
-            tentativa = false; // Sai do loop se a combinação for válida
+        if (roupa1 !== roupa2 && tiposPermitidos[roupa1.tipo]?.includes(roupa2.tipo)) {
+            document.getElementById('combinacao-gerada').textContent = `Combinação sugerida: ${roupa1.nome} + ${roupa2.nome}`;
+            return;
         }
+        tentativa++;
     }
 
-    document.getElementById('combinacao-gerada').textContent = `Combinação sugerida: ${roupa1.nome} + ${roupa2.nome}`;
+    // Se não encontrou nenhuma combinação válida
+    document.getElementById('combinacao-gerada').textContent = 'Nenhuma combinação válida encontrada!';
 }
+
 
 // Adicionar roupa
 document.getElementById('form-roupa').addEventListener('submit', function(event) {

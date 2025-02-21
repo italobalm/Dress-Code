@@ -14,7 +14,7 @@ body{
 }
 
 /*Botões de cadastro e entrar na página de login*/
-#botaoCadastro, #botaoEntrar{
+#botaoCadastro, #botaoEntrar, #finalizarCadastro{
     border-radius: 15px;
     padding: 0.60rem;
     width: 90%;
@@ -33,10 +33,11 @@ body{
 }
 
 /*Campos de email e senha na página de login*/
-#campoEmail, #campoSenha{
+#campoEmail, #campoSenha, #camposCadastro{
     width: 90%;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 
 /*Nome "Primeiro Acesso" na página de login*/
 .primeiroAcesso {
@@ -50,39 +51,88 @@ body{
 
 /*Responsividade da tela de login no PC*/
 @media screen and (min-width: 1024px) {
-    #botaoCadastro, #botaoEntrar{
+    #botaoCadastro, #botaoEntrar, #finalizarCadastro{
         width: 20%;
     }
 }
 
-
-
-
-
-
-@media screen and (min-width: 1024px) {
-    .btn{
-        max-width: 300px;
-        max-width: 300px;
-        margin-left: 30px;
-    }
-
+/*Logo das páginas internas do app*/
+.fotoLogoTopo{
+    width: 75px !important;
+    height: 80px !important;
 }
 
-
-.input-group-text {
-    background-color: white;
-    width: center;
-    font-family: 'Jaro', sans-serif  !important;
+/*Título Guarda-Roupas*/
+.guarda-roupas{
+    padding-bottom: 25px;
 }
 
-.retangulo_nomes{
-    width: 350px !important;
-    padding: 10px
-
+/*Campo para addicionar nome da roupa na tela de guarda roupas*/
+#form-roupa{
+    font-weight: 500;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#suggestions { margin-top: 20px; text-align: center; }
+/*Botões de add roupa e gerar combinação na tela de guarda roupas*/
+#addRoupa, #gerar-combinacao{
+    font-size: 12px;
+    background-color: #6c757d;
+    color: white;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*Lista das roupas armazenadas no guarda roupas*/
+#lista-roupas{
+    padding-bottom: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+}
+
+/*Resultado da combinação gerada*/
+#combinacao-gerada{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+    border-radius: 7px;
+    padding: 20px
+}
+
+/*Campo para adicionar cor*/
+#colorInput{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#busca{
+    width: 75%;
+}
+
+#colorPicker{
+    position: absolute; 
+    inset: 0; 
+    width: 100%;
+     height: 100%; 
+     opacity: 0; 
+     cursor: pointer;
+}
+
+.campo{
+    position: relative; 
+    display: inline-block; 
+    width: 100%;
+}
+
+/*Sugestões de cores*/
+#suggestions { 
+    margin-top: 20px; 
+    text-align: center; }
+
 .color-box {
     width: 60px;
     height: 60px;
@@ -94,6 +144,7 @@ body{
 }
 
 
+/*Títulos*/
 h3 {
     text-align: center;
 }
@@ -113,14 +164,7 @@ p {
     padding-right: 40px;
 }
 
-
-
-
-#gerar-combinacao{
-    font-size: 12px;
-}
-
-/* Estilos gerais do botão */
+/* Botão de remover item do guarda-roupas */
 .btn-danger {
     width: auto;
     position: relative;
@@ -148,8 +192,10 @@ p {
     }
 }
 
+/*Nome cadastro na tela cadastro*/
 .cadastro-nome{
-    padding-top: 300px;
-
+    padding-top: 200px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-family: "jaro";
 }
-

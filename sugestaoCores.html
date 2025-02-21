@@ -9,41 +9,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
 
- <!-- Barra do topo -->
-<nav class="navbar bg-body-tertiary">
+ <!-- Topo da página -->
+ <nav class="navbar bg-body-tertiary">
   <div class="container d-flex justify-content-between w-100">
-    <!-- Colocando logo à esquerda -->
-    <a class="navbar-brand" href="">
-      <img src="img/logo dresscode.png" alt="Logo Esquerda" width="75" height="80">
-    </a>
-    
-    <!-- Adicionando menu suspenso à direita -->
-    <div class="dropdown ms-auto">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        Menu
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="sugestaoCores.html">Sugestão de cores</a></li>
-        <li><a class="dropdown-item" href="cadastrarRoupas.html">Guarda-Roupas</a></li>
-        <li><a class="dropdown-item" href="index.html">Sair</a></li>
-    </ul>
-    </div>
+      <!-- Colocando logo no topo à esquerda esquerda -->
+       <div class="fotoLogoTopo">
+      <a class="navbar-brand" href="cadastrarRoupas.html">
+          <img src="img/logo dresscode.png" alt="Logo" class="img-fluid">
+      </a>
+      </div>
+
+      <!-- Menu suspenso à direita -->
+      <div class="dropdown ms-auto">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+          </button>
+      
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="cadastrarRoupas.html">Guarda-Roupas</a></li>
+            <li><a class="dropdown-item" href="sugestaoCores.html">Sugestão de cores</a></li>
+            <li><a class="dropdown-item" href="index.html">Sair</a></li>
+        </ul>
+      </div>
   </div>
 </nav>
+<!--Fim da navbar-->
 
 
-  <!-- Barra de pesquisa -->
+<!-- Barra de pesquisa -->
   <nav class="navbar bg-body-tertiary">
-    <div class="container d-flex justify-content-center w-100">
+    <div class="container d-flex justify-content-center">
       <!-- Buscar -->
-      <form class="d-flex w-75" role="search">
+      <form id="busca" class="d-flex" role="search">
         <div class="input-group">
           <!-- Campo de entrada para a cor -->
-          <div style="position: relative; display: inline-block; width: 100%;">
-            <input type="text" id="colorInput" readonly placeholder="Selecione a cor da sua roupa" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
-            <input type="color" id="colorPicker" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+          <div class="campo">
+            <input type="text" id="colorInput" readonly placeholder="Selecione a cor da sua roupa">
+            <input type="color" id="colorPicker">
         </div>
         
         </div>
@@ -53,7 +58,7 @@
 
   <div>
     <br>
-    <h3>Sugestão de complementos</h3>
+    <h3>SUGESTÃO DE COMPLEMENTOS</h3>
   </div>
   <!-- Exibir as sugestões de cores (células vazias) -->
   <div id="suggestions">
@@ -67,7 +72,7 @@
     <!--Cores Análogas -->
     <div class="card mb-3">
       <div class="card-body">
-        <h4 class="card-title">1 e 2. Cores análogas</h4>
+        <h4 class="card-title">1 e 2. CORES ANÁLOGAS</h4>
         <p class="card-text">Cores análogas são ideais para quem quer um look coordenado e sem muito contraste. Elas são perfeitas para quem busca um estilo mais suave, elegante e coeso.</p>
       </div>
     </div>
@@ -75,7 +80,7 @@
     <!-- Cor Complementar Equilibrada -->
     <div class="card mb-3">
       <div class="card-body">
-        <h4 class="card-title">3. Cor complementar equilibrada</h4>
+        <h4 class="card-title">3. COR COMPLEMENTAR EQUILIBRADA</h4>
         <p class="card-text">Cores complementares são perfeitas para quem quer se destacar, criar um contraste marcante e transmitir uma energia vibrante no visual. Usar uma cor complementar de forma equilibrada faz o look ser ousado, mas ainda agradável visualmente.</p>
       </div>
     </div>
@@ -83,17 +88,16 @@
     <!-- Cor Neutra -->
     <div class="card mb-3">
       <div class="card-body">
-        <h4 class="card-title">4. Cor neutra</h4>
+        <h4 class="card-title">4. COR NEUTRA</h4>
         <p class="card-text">As cores neutras são ótimas para suavizar visuais muito vibrantes ou simplesmente criar uma base mais elegante e sofisticada. Qualquer cor que você escolher pode ser combinada com um tom neutro para trazer equilíbrio e sofisticação ao look.</p>
       </div>
     </div>
   </div>
   
 
-  <!-- Arquivo js-->
+
   <script src="scriptSugestao.js"></script>
-  <!-- JavaScript do Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
