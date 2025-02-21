@@ -1,6 +1,6 @@
 body{
     background-color: #f8f8f8;
-    font-family: 'Jaro', sans-serif !important;
+    font-family: 'Jaro', sans-serif;
 }
 
 /*Logo da página de login*/
@@ -24,6 +24,7 @@ body{
     font-family: system-ui;
     border-color: transparent;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    font-weight: 400;
 }
 
 /*Efeito ao passar o mouse sobre os botões*/
