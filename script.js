@@ -3,7 +3,7 @@ document.getElementById("botaoEntrar").addEventListener("click", function(){
     window.location.href="cadastrarRoupas.html"
 });
 
-//Redirecionamento para a página de cadastro
+//Botão "Cadastre-se" que redireciona para a página de cadastro
 document.getElementById("botaoCadastro").addEventListener("click", function(){
     window.location.href="novoUsuario.html"
 });
