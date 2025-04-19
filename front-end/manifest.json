@@ -4,7 +4,7 @@
   "start_url": "index.html",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["standalone", "browser"],
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
   "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#e2e2e2",
@@ -13,29 +13,29 @@
   "id": "dress-code",
   "description": "O app ideal para você montar seus looks!",
   "icons": [
-  {
-    "src": "AppImages/android/android-launchericon-192-192.png",
-    "sizes": "192x192",
-    "type": "image/png"
-  },
-  {
-    "src": "AppImages/android/android-launchericon-512-512.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }
-],
+    {
+      "src": "AppImages/android/android-launchericon-192-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "AppImages/android/android-launchericon-512-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "shortcuts": [
     {
       "name": "Sugestão de Cores",
       "short_name": "Cores",
       "url": "sugestaoCores.html",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "AppImages/android/android-launchericon-192-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Roupas por Evento",
       "short_name": "Eventos",
       "url": "sugestoes.html",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "AppImages/android/android-launchericon-192-192.png", "sizes": "192x192" }]
     }
   ]
 }
