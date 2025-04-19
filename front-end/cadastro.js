@@ -30,7 +30,7 @@ document.getElementById("form-cadastro").addEventListener("submit", async (event
   
       if (response.ok && resultado.success) {
         alert("Cadastro realizado com sucesso!");
-        window.location.href = "login.html"; // Verifique se o arquivo login.html está nesse caminho
+        window.location.href = "index.html"; 
       } else {
         alert(resultado.mensagem || "Erro ao cadastrar.");
       }

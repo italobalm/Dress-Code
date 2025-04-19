@@ -5,5 +5,12 @@
     "email": "italobalm@gmail.com",
     "nascimento": "2025-04-11",
     "senha": "12345"
+  },
+  {
+    "nome": "Ana",
+    "sobrenome": "Teste",
+    "email": "test_user@gmail.com",
+    "nascimento": "2025-05-03",
+    "senha": "123"
   }
 ]
