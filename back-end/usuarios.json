@@ -12,5 +12,12 @@
     "email": "test_user@gmail.com",
     "nascimento": "2025-05-03",
     "senha": "123"
+  },
+  {
+    "nome": "ana",
+    "sobrenome": "teste",
+    "email": "ana_test@gmail.com",
+    "nascimento": "2025-05-02",
+    "senha": "123"
   }
 ]

@@ -7,6 +7,10 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+const sugestoesRouter = require('./rotas/sugestoes');
+app.use('/api/sugestoes', sugestoesRouter);
+
+
 const USERS_FILE = './usuarios.json';
 
 // Função para ler os usuários existentes
