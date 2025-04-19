@@ -11,7 +11,7 @@ document.getElementById("form-login").addEventListener("submit", async (event) =
   }
 
   try {
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch("https://dress-code-backend.onrender.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, senha })

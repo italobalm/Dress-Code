@@ -1,3 +1,5 @@
+const API_URL = "https://dress-code-backend.onrender.com"; 
+
 const eventoSelect = document.getElementById('eventoSelect');
 const generoSelect = document.getElementById('generoSelect');
 
@@ -13,7 +15,7 @@ async function buscarSugestoes() {
   if (!evento || !genero) return;
 
   try {
-    const resposta = await fetch(`http://localhost:3000/api/sugestoes/${evento}`);
+    const resposta = await fetch(`${API_URL}/api/sugestoes/${evento}`);
     const dados = await resposta.json();
 
     const sugestoesFiltradas =
