@@ -1,8 +1,41 @@
 {
   "name": "Dress Code",
+  "short_name": "DressCode",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#e2e2e2",
-  "short_name": "Dress Code",
+  "lang": "pt-BR",
+  "dir": "ltr",
   "id": "dress-code",
-  "description": "O app ideal para você montar seus looks!"
+  "description": "O app ideal para você montar seus looks!",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sugestão de Cores",
+      "short_name": "Cores",
+      "url": "sugestaoCores.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Roupas por Evento",
+      "short_name": "Eventos",
+      "url": "sugestoes.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
 }
