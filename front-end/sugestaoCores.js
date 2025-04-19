@@ -2,8 +2,6 @@ const colorInput = document.getElementById("colorInput");
 const colorPicker = document.getElementById("colorPicker");
 const colorBoxes = document.querySelectorAll(".color-box");
 
-colorInput.addEventListener("click", () => colorPicker.click());
-
 colorPicker.addEventListener("input", () => {
   const baseColor = colorPicker.value;
   colorInput.style.backgroundColor = baseColor;
@@ -22,7 +20,7 @@ function getMatchingColors(hex) {
   const [h, s, l] = rgbToHsl(r, g, b);
 
   const analogous1 = hslToHex((h + 30) % 360, s, l);
-  const analogous2 = hslToHex((h + 330) % 360, s, l); // equivalente a -30
+  const analogous2 = hslToHex((h + 330) % 360, s, l); // -30 equivalente
   const complementary = hslToHex((h + 180) % 360, Math.max(s * 0.9, 0.3), Math.min(l * 1.05, 0.9));
   const neutral = l > 0.5 ? "#333333" : "#F0F0F0";
 
@@ -81,10 +79,6 @@ function hslToHex(h, s, l) {
     b = hue2rgb(p, q, h - 1 / 3);
   }
 
-  const toHex = x => {
-    const hex = Math.round(x * 255).toString(16).padStart(2, '0');
-    return hex;
-  };
-
+  const toHex = x => Math.round(x * 255).toString(16).padStart(2, '0');
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
 }
