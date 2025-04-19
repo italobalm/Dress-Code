@@ -2,9 +2,6 @@ const colorInput = document.getElementById("colorInput");
 const colorPicker = document.getElementById("colorPicker");
 const colorBoxes = document.querySelectorAll(".color-box");
 
-// Dispara o color picker ao clicar na barra
-colorInput.addEventListener("click", () => colorPicker.click());
-
 colorPicker.addEventListener("input", () => {
   const baseColor = colorPicker.value;
   colorInput.style.backgroundColor = baseColor;
